@@ -6,6 +6,7 @@ const ejs = require('ejs');
 const expressSession = require('express-session');
 const bcrypt = require('bcryptjs');
 const db = require('./db.js');
+const path = require('path');
 
 const app = express();
 
