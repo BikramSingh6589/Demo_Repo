@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% if(locals.ud){ %>
+    <h1>Hello : <%= ud.name %> </h1>
+    <h2>Your Email is  <%= ud.email%> : </h2>
+    <a href="/about">About</a>
+<% } else{ %>
+        <h1>No data</h1>
+    <% } %>
+
+</body>
+</html>
