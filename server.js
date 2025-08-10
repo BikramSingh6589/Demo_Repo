@@ -6,6 +6,7 @@ const ejs = require('ejs');
 const expressSession = require('express-session');
 const bcrypt = require('bcryptjs');
 const db = require('./db.js');
+const path = require('path');
 
 const app = express();
 
@@ -21,9 +22,11 @@ const about = require('./router/aboutroutes.js');
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended : false}));
 
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.set('view engine','ejs');
-app.use(express.static("public"));
+// app.set('view engine','ejs');
+// app.use(express.static("public"));
 
 app.use(expressSession({
     secret : process.env.SECRET,
@@ -42,7 +45,18 @@ app.use('/about',about);
 
 // Running ----------------------------------------------------------------------------------------------------------------------------
 
-const port = process.env.PORT;
-app.listen(port, ()=>{
-    console.log(`App is Running at port : ${port}`);
-})
+// const port = process.env.PORT || 3000;
+// app.listen(port, ()=>{
+//     console.log(`App is Running at port : ${port}`);
+// })
+
+if (require.main === module) {
+    // Running locally
+    const port = process.env.PORT || 3000;
+    app.listen(port, () => {
+        console.log(`App is running at port: ${port}`);
+    });
+} else {
+    // Running on Vercel
+    module.exports = app;
+}
