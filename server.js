@@ -16,6 +16,7 @@ const sigInRoutes = require('./router/signinroutes.js')
 const signUpRoutes = require('./router/signuproutes.js');
 const home = require('./router/homeroutes.js');
 const about = require('./router/aboutroutes.js');
+const imageUpload = require('./router/iuroutes.js');
 
 // Middleware  ----------------------------------------------------------------------------------------------------------------------------
 
@@ -42,6 +43,7 @@ app.use('/',home);
 app.use('/signin' , sigInRoutes);
 app.use('/signup',signUpRoutes);
 app.use('/about',about);
+app.use('/upload',imageUpload);
 
 // Running ----------------------------------------------------------------------------------------------------------------------------
 
